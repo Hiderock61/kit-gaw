@@ -21,6 +21,22 @@ const questionProfileButton = document.querySelector(
 const placeViewpointButton = document.querySelector("#place-viewpoint-button");
 const viewpointModel = document.querySelector("#viewpoint-model");
 const closeViewpointModel = document.querySelector("#close-viewpoint-model");
+const otherViewButton = document.querySelector("#other-view-button");
+const otherViewModel = document.querySelector("#other-view-model");
+const closeOtherViewModel = document.querySelector("#close-other-view-model");
+const signalButton = document.querySelector("#signal-button");
+const signalModel = document.querySelector("#signal-model");
+const closeSignalModel = document.querySelector("#close-signal-model");
+
+function setProfileModel(activeModel) {
+  const showOtherView = activeModel === "other-view";
+  const showSignal = activeModel === "signal";
+
+  otherViewModel.hidden = !showOtherView;
+  otherViewModel.setAttribute("aria-hidden", String(!showOtherView));
+  signalModel.hidden = !showSignal;
+  signalModel.setAttribute("aria-hidden", String(!showSignal));
+}
 
 function showScreen(screen) {
   const showHome = screen === "home";
@@ -40,6 +56,10 @@ function showScreen(screen) {
   profileScreen.hidden = !showProfile;
   profileScreen.setAttribute("aria-hidden", String(!showProfile));
 
+  if (!showProfile) {
+    setProfileModel(null);
+  }
+
   window.scrollTo(0, 0);
 }
 
@@ -54,7 +74,7 @@ communityBackFromQuestion.addEventListener("click", () =>
   showScreen("community"),
 );
 communityBackFromProfile.addEventListener("click", () =>
-  showScreen("community"),
+  showScreen("question"),
 );
 
 placeViewpointButton.addEventListener("click", () => {
@@ -65,4 +85,20 @@ placeViewpointButton.addEventListener("click", () => {
 closeViewpointModel.addEventListener("click", () => {
   viewpointModel.hidden = true;
   viewpointModel.setAttribute("aria-hidden", "true");
+});
+
+otherViewButton.addEventListener("click", () => {
+  setProfileModel("other-view");
+});
+
+closeOtherViewModel.addEventListener("click", () => {
+  setProfileModel(null);
+});
+
+signalButton.addEventListener("click", () => {
+  setProfileModel("signal");
+});
+
+closeSignalModel.addEventListener("click", () => {
+  setProfileModel(null);
 });

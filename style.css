@@ -750,6 +750,244 @@ h2 {
   margin: 44px auto 0;
 }
 
+.profile-content {
+  width: min(100%, 460px);
+  min-height: calc(100svh - 60px);
+  margin: 0 auto;
+  padding: 24px 0 16px;
+}
+
+.profile-header {
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+.avatar-placeholder {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: #e9eef7;
+}
+
+.avatar-head {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 24px;
+  height: 27px;
+  border-radius: 48% 48% 44% 44%;
+  background: #66738a;
+  transform: translateX(-50%);
+}
+
+.avatar-body {
+  position: absolute;
+  right: 11px;
+  bottom: -18px;
+  left: 11px;
+  height: 45px;
+  border-radius: 50% 50% 0 0;
+  background: #66738a;
+}
+
+.profile-header h2 {
+  margin-top: 20px;
+  font-size: clamp(30px, 8vw, 42px);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.profile-introduction {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.profile-section {
+  margin-top: 42px;
+}
+
+.profile-section > h3 {
+  margin: 0 0 16px;
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 720;
+}
+
+.room-identity-block {
+  padding: 21px 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.room-identity-block + .room-identity-block {
+  margin-top: 12px;
+}
+
+.room-identity-block h4 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.room-identity-block ul {
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.room-identity-block li,
+.room-identity-block p {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.room-identity-block li + li {
+  margin-top: 5px;
+}
+
+.room-identity-block h4 + p {
+  margin-top: 13px;
+}
+
+.distance-section {
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+}
+
+.distance-section p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.profile-experience-example {
+  margin-top: 42px;
+  padding: 0 2px;
+  color: #7a8495;
+}
+
+.profile-experience-label {
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.profile-experience-label + p {
+  margin-top: 7px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.profile-actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.profile-action-button {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.profile-action-secondary {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.profile-action-primary {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.profile-action-secondary:hover {
+  border-color: #b8c4d6;
+  background: #fbfcfe;
+}
+
+.profile-action-primary:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.profile-action-button:active,
+.profile-model-close:active {
+  transform: translateY(1px);
+}
+
+.profile-action-button:focus-visible,
+.profile-model-close:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}
+
+.profile-inline-model {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: -4px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.profile-inline-model[hidden] {
+  display: none;
+}
+
+.profile-inline-model p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.profile-model-close {
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 680;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.profile-back-button {
+  display: block;
+  margin: 44px auto 0;
+}
+
 @media (max-height: 620px) {
   .entry-content,
   .placeholder-content {

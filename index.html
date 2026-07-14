@@ -318,11 +318,90 @@
       </section>
 
       <section id="screen-profile" class="screen" hidden aria-hidden="true">
-        <div class="placeholder-content">
-          <h2>無表情ケン</h2>
+        <div class="profile-content">
+          <header class="profile-header">
+            <div class="avatar-placeholder" role="img" aria-label="無表情ケンの仮アバター">
+              <span class="avatar-head" aria-hidden="true"></span>
+              <span class="avatar-body" aria-hidden="true"></span>
+            </div>
 
-          <button id="community-back-from-profile" class="secondary-button" type="button">
-            部屋へ戻る
+            <h2>無表情ケン</h2>
+            <p class="profile-introduction">
+              派手な音楽ほど、<br />
+              演奏者の顔が動かない理由を掘っています。
+            </p>
+          </header>
+
+          <section class="profile-section room-card-section" aria-labelledby="room-card-title">
+            <h3 id="room-card-title">部屋名刺©️</h3>
+
+            <div class="room-identity-block">
+              <h4>よくいる部屋</h4>
+              <ul>
+                <li>ハードロックの矛盾</li>
+                <li>努力を隠す美学</li>
+                <li>ステージ衣装と身体</li>
+              </ul>
+            </div>
+
+            <div class="room-identity-block">
+              <h4>よく戻る問い</h4>
+              <p>
+                無表情は、<br />
+                余裕なのか演技なのか。
+              </p>
+            </div>
+          </section>
+
+          <section class="profile-section distance-section" aria-labelledby="distance-title">
+            <h3 id="distance-title">距離感</h3>
+            <p>
+              足あとだけ残して、<br />
+              今日は帰るくらいでも大丈夫です。
+            </p>
+          </section>
+
+          <aside class="profile-experience-example" aria-label="交差の体験例">
+            <p class="profile-experience-label">体験例</p>
+            <p>
+              この人とは、<br />
+              同じ問いの近くで何度か交差しています。
+            </p>
+          </aside>
+
+          <div class="profile-actions">
+            <button id="other-view-button" class="profile-action-button profile-action-secondary" type="button">
+              この人の別の見方を見る
+            </button>
+
+            <div id="other-view-model" class="profile-inline-model" hidden aria-hidden="true">
+              <p>
+                この先には、<br />
+                この人が別の場所で置いた見方が続く想定です。
+              </p>
+              <button id="close-other-view-model" class="profile-model-close" type="button">
+                閉じる
+              </button>
+            </div>
+
+            <button id="signal-button" class="profile-action-button profile-action-primary" type="button">
+              合図を置く
+            </button>
+
+            <div id="signal-model" class="profile-inline-model" hidden aria-hidden="true">
+              <p>
+                この模型では、<br />
+                少し近づきたい意思を<br />
+                ここに置ける想定です。
+              </p>
+              <button id="close-signal-model" class="profile-model-close" type="button">
+                閉じる
+              </button>
+            </div>
+          </div>
+
+          <button id="community-back-from-profile" class="secondary-button profile-back-button" type="button">
+            問いへ戻る
           </button>
         </div>
       </section>
