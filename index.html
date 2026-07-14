@@ -109,11 +109,117 @@
       </section>
 
       <section id="screen-community" class="screen" hidden aria-hidden="true">
-        <div class="placeholder-content">
-          <h2>ハードロックの矛盾</h2>
+        <div class="community-content">
+          <header class="community-header">
+            <h2>🎸 ハードロックの矛盾</h2>
 
-          <button id="explore-back-button" class="secondary-button" type="button">
+            <p class="room-description">
+              派手なのに無表情。<br />
+              高度な技術なのに、努力していない顔をする。
+            </p>
+
+            <p class="room-description room-description-secondary">
+              ハードロックに潜む、<br />
+              格好よさの矛盾を歩く部屋です。
+            </p>
+          </header>
+
+          <section class="community-section" aria-labelledby="temperature-title">
+            <h3 id="temperature-title" class="community-section-title">部屋の温度</h3>
+
+            <dl class="temperature-grid">
+              <div class="temperature-item">
+                <dt>考察</dt>
+                <dd>やや深め</dd>
+              </div>
+              <div class="temperature-item">
+                <dt>立ち話</dt>
+                <dd>ゆるめ</dd>
+              </div>
+              <div class="temperature-item">
+                <dt>参加ペース</dt>
+                <dd>のんびり</dd>
+              </div>
+              <div class="temperature-item">
+                <dt>読むだけ</dt>
+                <dd>歓迎</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="community-section" aria-labelledby="questions-title">
+            <h3 id="questions-title" class="community-section-title">この部屋の問い</h3>
+
+            <div class="question-list">
+              <article class="question-card question-card-primary">
+                <p class="question-number">問い1</p>
+                <h4>
+                  なぜハードロックは、<br />
+                  努力していない顔をするのか。
+                </h4>
+                <button id="question-button" class="room-button" type="button">
+                  この問いを開く
+                </button>
+              </article>
+
+              <article class="question-card question-card-static">
+                <p class="question-number">問い2</p>
+                <h4>
+                  ギターを低く持つと、<br />
+                  なぜ格好よく見えるのか。
+                </h4>
+              </article>
+
+              <article class="question-card question-card-static">
+                <p class="question-number">問い3</p>
+                <h4>
+                  無表情は、<br />
+                  余裕なのか、演技なのか。
+                </h4>
+              </article>
+            </div>
+          </section>
+
+          <section class="community-section people-section" aria-labelledby="people-title">
+            <h3 id="people-title" class="community-section-title">最近この辺を歩いている人</h3>
+
+            <div class="people-presence">
+              <div class="person-row person-row-linked">
+                <span>無表情ケン</span>
+                <button id="profile-button" class="person-button" type="button">
+                  この人を見る
+                </button>
+              </div>
+              <div class="person-row"><span>鉄弦ミチコ</span></div>
+              <div class="person-row"><span>リチャード低位置</span></div>
+            </div>
+          </section>
+
+          <button id="explore-back-button" class="secondary-button community-back-button" type="button">
             部屋を探すへ戻る
+          </button>
+        </div>
+      </section>
+
+      <section id="screen-question" class="screen" hidden aria-hidden="true">
+        <div class="placeholder-content">
+          <h2 class="placeholder-question-title">
+            なぜハードロックは、<br />
+            努力していない顔をするのか。
+          </h2>
+
+          <button id="community-back-from-question" class="secondary-button" type="button">
+            部屋へ戻る
+          </button>
+        </div>
+      </section>
+
+      <section id="screen-profile" class="screen" hidden aria-hidden="true">
+        <div class="placeholder-content">
+          <h2>無表情ケン</h2>
+
+          <button id="community-back-from-profile" class="secondary-button" type="button">
+            部屋へ戻る
           </button>
         </div>
       </section>
