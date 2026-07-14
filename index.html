@@ -29,11 +29,91 @@
       </section>
 
       <section id="screen-explore" class="screen" hidden aria-hidden="true">
-        <div class="placeholder-content">
-          <h2>部屋を探す</h2>
+        <div class="explore-content">
+          <header class="explore-header">
+            <h2>部屋を探す</h2>
+          </header>
 
-          <button id="back-button" class="secondary-button" type="button">
+          <section class="category-section" aria-labelledby="category-title">
+            <h3 id="category-title" class="section-label">カテゴリ</h3>
+            <div class="category-chips" aria-label="カテゴリ一覧">
+              <span class="category-chip">趣味</span>
+              <span class="category-chip">経験</span>
+              <span class="category-chip">生活スタイル</span>
+            </div>
+          </section>
+
+          <p class="model-note">
+            この模型では、<br />
+            「ハードロックの矛盾」だけ歩けます。
+          </p>
+
+          <section class="room-section" aria-labelledby="open-room-title">
+            <h3 id="open-room-title" class="section-label">開通している部屋：</h3>
+
+            <article class="room-card room-card-open">
+              <h4>🎸 ハードロックの矛盾</h4>
+              <p>
+                派手なのに無表情。<br />
+                格好よさの中にある矛盾を掘る部屋。
+              </p>
+              <button id="community-button" class="room-button" type="button">
+                この部屋を歩く
+              </button>
+            </article>
+          </section>
+
+          <section class="room-section waiting-section" aria-labelledby="waiting-room-title">
+            <h3 id="waiting-room-title" class="section-label">準備中の部屋：</h3>
+
+            <div class="room-list">
+              <article class="room-card room-card-waiting">
+                <div class="room-card-heading">
+                  <h4>♨️ 銭湯帰りの会</h4>
+                  <span class="waiting-label">準備中</span>
+                </div>
+                <p>
+                  湯上がりに浮かんだことを、<br />
+                  急がず持ち寄る部屋。
+                </p>
+              </article>
+
+              <article class="room-card room-card-waiting">
+                <div class="room-card-heading">
+                  <h4>🌙 夜型生活の観測室</h4>
+                  <span class="waiting-label">準備中</span>
+                </div>
+                <p>
+                  夜に起きている人の生活と感覚を、<br />
+                  静かに見ていく部屋。
+                </p>
+              </article>
+
+              <article class="room-card room-card-waiting">
+                <div class="room-card-heading">
+                  <h4>🧳 海外生活の持ち帰り品</h4>
+                  <span class="waiting-label">準備中</span>
+                </div>
+                <p>
+                  海外で身についた感覚や習慣を、<br />
+                  日本でどう扱っているか話す部屋。
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <button id="back-button" class="secondary-button explore-back-button" type="button">
             入口へ戻る
+          </button>
+        </div>
+      </section>
+
+      <section id="screen-community" class="screen" hidden aria-hidden="true">
+        <div class="placeholder-content">
+          <h2>ハードロックの矛盾</h2>
+
+          <button id="explore-back-button" class="secondary-button" type="button">
+            部屋を探すへ戻る
           </button>
         </div>
       </section>
