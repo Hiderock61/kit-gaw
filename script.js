@@ -15,6 +15,12 @@ const communityBackFromQuestion = document.querySelector(
 const communityBackFromProfile = document.querySelector(
   "#community-back-from-profile",
 );
+const questionProfileButton = document.querySelector(
+  "#question-profile-button",
+);
+const placeViewpointButton = document.querySelector("#place-viewpoint-button");
+const viewpointModel = document.querySelector("#viewpoint-model");
+const closeViewpointModel = document.querySelector("#close-viewpoint-model");
 
 function showScreen(screen) {
   const showHome = screen === "home";
@@ -43,9 +49,20 @@ communityButton.addEventListener("click", () => showScreen("community"));
 exploreBackButton.addEventListener("click", () => showScreen("explore"));
 questionButton.addEventListener("click", () => showScreen("question"));
 profileButton.addEventListener("click", () => showScreen("profile"));
+questionProfileButton.addEventListener("click", () => showScreen("profile"));
 communityBackFromQuestion.addEventListener("click", () =>
   showScreen("community"),
 );
 communityBackFromProfile.addEventListener("click", () =>
   showScreen("community"),
 );
+
+placeViewpointButton.addEventListener("click", () => {
+  viewpointModel.hidden = false;
+  viewpointModel.setAttribute("aria-hidden", "false");
+});
+
+closeViewpointModel.addEventListener("click", () => {
+  viewpointModel.hidden = true;
+  viewpointModel.setAttribute("aria-hidden", "true");
+});

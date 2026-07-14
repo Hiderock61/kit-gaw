@@ -506,6 +506,245 @@ h2 {
   letter-spacing: -0.02em;
 }
 
+.question-detail-content {
+  width: min(100%, 460px);
+  min-height: calc(100svh - 60px);
+  margin: 0 auto;
+  padding: 24px 0 16px;
+}
+
+.question-detail-header {
+  padding-bottom: 38px;
+  border-bottom: 1px solid var(--border);
+}
+
+.question-detail-label {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.question-detail-header h2 {
+  margin-top: 12px;
+  font-size: clamp(27px, 7.3vw, 38px);
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+}
+
+.question-introduction {
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.question-introduction p + p {
+  margin-top: 17px;
+}
+
+.question-detail-section {
+  margin-top: 44px;
+}
+
+.question-detail-section h3 {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 720;
+  letter-spacing: 0.005em;
+}
+
+.viewpoint-list {
+  display: grid;
+  gap: 12px;
+}
+
+.viewpoint-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.viewpoint-short {
+  padding: 18px 19px;
+}
+
+.viewpoint-card p {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.viewpoint-long {
+  margin-top: 4px;
+  padding: 22px;
+}
+
+.viewpoint-long .viewpoint-author {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.viewpoint-long h4 {
+  margin: 10px 0 0;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 720;
+}
+
+.viewpoint-long h4 + p {
+  margin-top: 16px;
+}
+
+.viewpoint-long p + p {
+  margin-top: 13px;
+}
+
+.person-view-button,
+.place-viewpoint-button {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.person-view-button {
+  margin-top: 22px;
+  border: 1px solid var(--border);
+  background: #f8faff;
+  color: var(--text);
+}
+
+.person-view-button:hover {
+  border-color: #b8c4d6;
+  background: #f2f6fc;
+}
+
+.place-viewpoint-button {
+  margin-top: 22px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.place-viewpoint-button:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.person-view-button:active,
+.place-viewpoint-button:active,
+.model-close-button:active {
+  transform: translateY(1px);
+}
+
+.person-view-button:focus-visible,
+.place-viewpoint-button:focus-visible,
+.model-close-button:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}
+
+.viewpoint-model {
+  margin-top: 14px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.viewpoint-model[hidden] {
+  display: none;
+}
+
+.viewpoint-model p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.model-close-button {
+  min-height: 38px;
+  margin-top: 14px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 680;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.small-talk-section {
+  padding-top: 42px;
+  border-top: 1px solid var(--border);
+}
+
+.small-talk-list {
+  display: grid;
+  gap: 14px;
+}
+
+.small-talk-block {
+  padding: 19px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--muted);
+}
+
+.small-talk-block p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.small-talk-block p + p {
+  margin-top: 12px;
+}
+
+.presence-example {
+  margin-top: 46px;
+  padding: 0 2px;
+  color: #7a8495;
+}
+
+.presence-example-label {
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.presence-example-label + p {
+  margin-top: 7px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.question-back-button {
+  display: block;
+  margin: 44px auto 0;
+}
+
 @media (max-height: 620px) {
   .entry-content,
   .placeholder-content {
@@ -538,6 +777,10 @@ h2 {
 
   .question-card-primary {
     padding: 21px 18px;
+  }
+
+  .viewpoint-long {
+    padding: 20px 18px;
   }
 
   .room-card-heading {
