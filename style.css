@@ -158,6 +158,87 @@ h2 {
   background: #fbfcfe;
 }
 
+/* 探索盤（screen-home） */
+
+.board-brand {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+}
+
+.board-block {
+  margin-top: 36px;
+}
+
+.board-first-time-heading {
+  line-height: 1.5;
+}
+
+.board-starter-list {
+  margin-top: 26px;
+}
+
+.board-later-section {
+  margin-top: 40px;
+}
+
+.board-later-count {
+  color: var(--muted);
+}
+
+.board-later-list {
+  margin-top: 2px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.board-later-row {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.board-later-row + .board-later-row {
+  border-top: 1px solid var(--border);
+}
+
+.board-next-path-section {
+  margin-top: 38px;
+}
+
+.board-signpost-list {
+  display: grid;
+  gap: 18px;
+}
+
+.board-signpost-context {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.board-signpost-room {
+  margin-top: 4px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.board-other-places-button {
+  display: block;
+  margin: 48px auto 0;
+}
+
 .explore-content {
   padding: 24px 0 16px;
 }

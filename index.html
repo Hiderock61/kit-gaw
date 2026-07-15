@@ -11,19 +11,96 @@
   <body>
     <main class="app-shell">
       <section id="screen-home" class="screen" aria-hidden="false">
-        <div class="entry-content">
-          <h1>Kit Gaw</h1>
+        <div class="explore-content">
+          <h1 class="board-brand">Kit Gaw</h1>
 
-          <p class="service-description">
-            趣味・経験・生活スタイルから、<br />
-            気になる部屋を自分で歩く<br />
-            コミュニティSNS。
-          </p>
+          <div id="board-first-time" class="board-block" hidden aria-hidden="true">
+            <h2 class="board-first-time-heading">
+              気になる場所から、<br />
+              歩き始めてみる。
+            </h2>
 
-          <p class="concept-copy">人を探すな。場を探せ。</p>
+            <div class="room-list board-starter-list">
+              <article class="room-card room-card-open">
+                <h4>🎸 ハードロックの矛盾</h4>
+                <button
+                  id="board-starter-open-button"
+                  class="room-button"
+                  type="button"
+                >
+                  この部屋を歩く
+                </button>
+              </article>
 
-          <button id="explore-button" class="primary-button" type="button">
-            部屋を歩いてみる
+              <article class="room-card room-card-waiting">
+                <div class="room-card-heading">
+                  <h4>🌙 夜型生活の観測室</h4>
+                  <span class="waiting-label">準備中</span>
+                </div>
+              </article>
+
+              <article class="room-card room-card-waiting">
+                <div class="room-card-heading">
+                  <h4>♨️ 銭湯帰りの会</h4>
+                  <span class="waiting-label">準備中</span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div id="board-returning" class="board-block" hidden aria-hidden="true">
+            <section class="board-primary-section">
+              <h3 class="section-label">この前の続き</h3>
+
+              <article class="room-card room-card-open">
+                <h4>無表情ケン</h4>
+                <p>「ハードロックの矛盾」から見つけました</p>
+                <button
+                  id="board-resume-button"
+                  class="room-button"
+                  type="button"
+                >
+                  続きを見る
+                </button>
+              </article>
+            </section>
+
+            <section id="board-later-section" class="board-later-section" hidden>
+              <h3 class="section-label">
+                あとで辿る　<span class="board-later-count">3件</span>
+              </h3>
+
+              <div class="board-later-list">
+                <div class="board-later-row"><span>無表情ケン</span></div>
+                <div class="board-later-row"><span>昭和サブカル研究室</span></div>
+                <div class="board-later-row"><span>努力を隠す美学</span></div>
+              </div>
+            </section>
+
+            <section
+              id="board-next-path-section"
+              class="board-next-path-section"
+              hidden
+            >
+              <h3 class="section-label">この先に続く場所</h3>
+
+              <div class="board-signpost-list">
+                <div class="board-signpost">
+                  <p class="board-signpost-context">
+                    無表情ケンが歩いている別の場
+                  </p>
+                  <p class="board-signpost-room">🌙 夜型生活の観測室</p>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <button
+            id="explore-button"
+            class="secondary-button board-other-places-button"
+            type="button"
+          >
+            ほかの場所を見る
           </button>
         </div>
       </section>

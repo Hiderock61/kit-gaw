@@ -1,3 +1,39 @@
+// ---- 探索盤（screen-home）の表示状態 ----
+// 検証用のダミーフラグです。値を書き換えて4状態を確認できます。
+//   "first-time"     : 初回（まだ何も歩いていない）
+//   "returned"       : 一度歩いた（この前の続きのみ）
+//   "with-later"     : あとで辿るがある
+//   "with-next-path" : この先に続く場所まである（フル状態）
+const explorationState = "with-next-path";
+
+const boardFirstTime = document.querySelector("#board-first-time");
+const boardReturning = document.querySelector("#board-returning");
+const boardLaterSection = document.querySelector("#board-later-section");
+const boardNextPathSection = document.querySelector(
+  "#board-next-path-section",
+);
+const boardStarterOpenButton = document.querySelector(
+  "#board-starter-open-button",
+);
+const boardResumeButton = document.querySelector("#board-resume-button");
+
+function applyExplorationState(state) {
+  const isFirstTime = state === "first-time";
+
+  boardFirstTime.hidden = !isFirstTime;
+  boardFirstTime.setAttribute("aria-hidden", String(!isFirstTime));
+  boardReturning.hidden = isFirstTime;
+  boardReturning.setAttribute("aria-hidden", String(isFirstTime));
+
+  const showLater = state === "with-later" || state === "with-next-path";
+  const showNextPath = state === "with-next-path";
+
+  boardLaterSection.hidden = !showLater;
+  boardNextPathSection.hidden = !showNextPath;
+}
+
+applyExplorationState(explorationState);
+
 const homeScreen = document.querySelector("#screen-home");
 const exploreScreen = document.querySelector("#screen-explore");
 const beatlesScreen = document.querySelector("#screen-beatles");
@@ -71,6 +107,10 @@ function showScreen(screen) {
 }
 
 exploreButton.addEventListener("click", () => showScreen("explore"));
+boardStarterOpenButton.addEventListener("click", () =>
+  showScreen("community"),
+);
+boardResumeButton.addEventListener("click", () => showScreen("community"));
 backButton.addEventListener("click", () => showScreen("home"));
 selfProfileButton.addEventListener("click", () => showScreen("profile"));
 beatlesButton.addEventListener("click", () => showScreen("beatles"));
