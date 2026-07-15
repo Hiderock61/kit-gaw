@@ -34,69 +34,89 @@
             <h2>部屋を探す</h2>
           </header>
 
-          <section class="category-section" aria-labelledby="category-title">
-            <h3 id="category-title" class="section-label">カテゴリ</h3>
-            <div class="category-chips" aria-label="カテゴリ一覧">
-              <span class="category-chip">趣味</span>
-              <span class="category-chip">経験</span>
-              <span class="category-chip">生活スタイル</span>
+          <button id="self-profile-button" class="explore-self-link" type="button">
+            自分の部屋名刺©️を見る
+          </button>
+
+          <section class="compact-room-section" aria-labelledby="open-room-title">
+            <h3 id="open-room-title" class="section-label">開通している部屋</h3>
+
+            <div class="compact-room-list">
+              <button id="beatles-button" class="compact-room-card compact-room-open" type="button">
+                <span class="compact-room-meta">
+                  <span class="compact-category-tag">趣味</span>
+                  <span class="compact-status compact-status-open">開通</span>
+                </span>
+                <span class="compact-room-name"><span aria-hidden="true">🍏</span> ビートルズをまだ話したい</span>
+                <span class="compact-room-description">
+                  知り尽くしたつもりでも、<br />
+                  まだ話したくなる。
+                </span>
+              </button>
+
+              <button id="community-button" class="compact-room-card compact-room-open" type="button">
+                <span class="compact-room-meta">
+                  <span class="compact-category-tag">趣味</span>
+                  <span class="compact-status compact-status-open">開通</span>
+                </span>
+                <span class="compact-room-name"><span aria-hidden="true">🎸</span> ハードロックの矛盾</span>
+                <span class="compact-room-description">
+                  派手なのに無表情。<br />
+                  その格好よさを掘る。
+                </span>
+              </button>
             </div>
           </section>
 
-          <p class="model-note">
-            この模型では、<br />
-            「ハードロックの矛盾」だけ歩けます。
-          </p>
+          <section class="compact-room-section compact-waiting-section" aria-labelledby="waiting-room-title">
+            <h3 id="waiting-room-title" class="section-label">準備中の部屋</h3>
 
-          <section class="room-section" aria-labelledby="open-room-title">
-            <h3 id="open-room-title" class="section-label">開通している部屋：</h3>
-
-            <article class="room-card room-card-open">
-              <h4>🎸 ハードロックの矛盾</h4>
-              <p>
-                派手なのに無表情。<br />
-                格好よさの中にある矛盾を掘る部屋。
-              </p>
-              <button id="community-button" class="room-button" type="button">
-                この部屋を歩く
-              </button>
-            </article>
-          </section>
-
-          <section class="room-section waiting-section" aria-labelledby="waiting-room-title">
-            <h3 id="waiting-room-title" class="section-label">準備中の部屋：</h3>
-
-            <div class="room-list">
-              <article class="room-card room-card-waiting">
-                <div class="room-card-heading">
-                  <h4>♨️ 銭湯帰りの会</h4>
-                  <span class="waiting-label">準備中</span>
+            <div class="compact-room-list">
+              <article class="compact-room-card compact-room-waiting">
+                <div class="compact-room-meta">
+                  <span class="compact-category-tag">生活スタイル</span>
+                  <span class="compact-status">準備中</span>
                 </div>
-                <p>
-                  湯上がりに浮かんだことを、<br />
-                  急がず持ち寄る部屋。
+                <h4 class="compact-room-name"><span aria-hidden="true">🌙</span> 夜型生活の観測室</h4>
+                <p class="compact-room-description">
+                  夜に起きている人の<br />
+                  生活と感覚を見る。
                 </p>
               </article>
 
-              <article class="room-card room-card-waiting">
-                <div class="room-card-heading">
-                  <h4>🌙 夜型生活の観測室</h4>
-                  <span class="waiting-label">準備中</span>
+              <article class="compact-room-card compact-room-waiting">
+                <div class="compact-room-meta">
+                  <span class="compact-category-tag">生活スタイル</span>
+                  <span class="compact-status">準備中</span>
                 </div>
-                <p>
-                  夜に起きている人の生活と感覚を、<br />
-                  静かに見ていく部屋。
+                <h4 class="compact-room-name"><span aria-hidden="true">♨️</span> 銭湯帰りの会</h4>
+                <p class="compact-room-description">
+                  湯上がりに浮かんだことを<br />
+                  持ち寄る。
                 </p>
               </article>
 
-              <article class="room-card room-card-waiting">
-                <div class="room-card-heading">
-                  <h4>🧳 海外生活の持ち帰り品</h4>
-                  <span class="waiting-label">準備中</span>
+              <article class="compact-room-card compact-room-waiting">
+                <div class="compact-room-meta">
+                  <span class="compact-category-tag">経験</span>
+                  <span class="compact-status">準備中</span>
                 </div>
-                <p>
-                  海外で身についた感覚や習慣を、<br />
-                  日本でどう扱っているか話す部屋。
+                <h4 class="compact-room-name"><span aria-hidden="true">🧳</span> 海外生活の持ち帰り品</h4>
+                <p class="compact-room-description">
+                  海外生活で身についた感覚を<br />
+                  話す。
+                </p>
+              </article>
+
+              <article class="compact-room-card compact-room-waiting">
+                <div class="compact-room-meta">
+                  <span class="compact-category-tag">経験</span>
+                  <span class="compact-status">準備中</span>
+                </div>
+                <h4 class="compact-room-name"><span aria-hidden="true">🎭</span> 努力を隠す美学</h4>
+                <p class="compact-room-description">
+                  頑張っているのに、<br />
+                  頑張って見せない理由を考える。
                 </p>
               </article>
             </div>
@@ -104,6 +124,20 @@
 
           <button id="back-button" class="secondary-button explore-back-button" type="button">
             入口へ戻る
+          </button>
+        </div>
+      </section>
+
+      <section id="screen-beatles" class="screen" hidden aria-hidden="true">
+        <div class="placeholder-content">
+          <h2>🍏 ビートルズをまだ話したい</h2>
+          <p class="beatles-placeholder-copy">
+            この部屋の本体は、<br />
+            次の工程で作る予定です。
+          </p>
+
+          <button id="beatles-back-button" class="secondary-button" type="button">
+            部屋を探すへ戻る
           </button>
         </div>
       </section>

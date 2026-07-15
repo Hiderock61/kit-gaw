@@ -1,10 +1,14 @@
 const homeScreen = document.querySelector("#screen-home");
 const exploreScreen = document.querySelector("#screen-explore");
+const beatlesScreen = document.querySelector("#screen-beatles");
 const communityScreen = document.querySelector("#screen-community");
 const questionScreen = document.querySelector("#screen-question");
 const profileScreen = document.querySelector("#screen-profile");
 const exploreButton = document.querySelector("#explore-button");
 const backButton = document.querySelector("#back-button");
+const selfProfileButton = document.querySelector("#self-profile-button");
+const beatlesButton = document.querySelector("#beatles-button");
+const beatlesBackButton = document.querySelector("#beatles-back-button");
 const communityButton = document.querySelector("#community-button");
 const exploreBackButton = document.querySelector("#explore-back-button");
 const questionButton = document.querySelector("#question-button");
@@ -41,6 +45,7 @@ function setProfileModel(activeModel) {
 function showScreen(screen) {
   const showHome = screen === "home";
   const showExplore = screen === "explore";
+  const showBeatles = screen === "beatles";
   const showCommunity = screen === "community";
   const showQuestion = screen === "question";
   const showProfile = screen === "profile";
@@ -49,6 +54,8 @@ function showScreen(screen) {
   homeScreen.setAttribute("aria-hidden", String(!showHome));
   exploreScreen.hidden = !showExplore;
   exploreScreen.setAttribute("aria-hidden", String(!showExplore));
+  beatlesScreen.hidden = !showBeatles;
+  beatlesScreen.setAttribute("aria-hidden", String(!showBeatles));
   communityScreen.hidden = !showCommunity;
   communityScreen.setAttribute("aria-hidden", String(!showCommunity));
   questionScreen.hidden = !showQuestion;
@@ -65,6 +72,9 @@ function showScreen(screen) {
 
 exploreButton.addEventListener("click", () => showScreen("explore"));
 backButton.addEventListener("click", () => showScreen("home"));
+selfProfileButton.addEventListener("click", () => showScreen("profile"));
+beatlesButton.addEventListener("click", () => showScreen("beatles"));
+beatlesBackButton.addEventListener("click", () => showScreen("explore"));
 communityButton.addEventListener("click", () => showScreen("community"));
 exploreBackButton.addEventListener("click", () => showScreen("explore"));
 questionButton.addEventListener("click", () => showScreen("question"));

@@ -315,6 +315,146 @@ h2 {
   margin: 44px auto 0;
 }
 
+.explore-self-link {
+  display: block;
+  margin: 20px 0 0 auto;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 620;
+  text-decoration: underline;
+  text-decoration-color: #b4bece;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.explore-self-link:hover {
+  color: var(--text);
+}
+
+.explore-self-link:focus-visible,
+.compact-room-open:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}
+
+.compact-room-section {
+  margin-top: 30px;
+}
+
+.compact-waiting-section {
+  margin-top: 34px;
+}
+
+.compact-room-list {
+  display: grid;
+  gap: 11px;
+}
+
+.compact-room-card {
+  width: 100%;
+  padding: 14px 16px 15px;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.compact-room-open {
+  border: 1px solid #bdcae3;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 7px 18px rgba(31, 65, 122, 0.07);
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.compact-room-open:hover {
+  border-color: #9eb1d6;
+  background: #fbfcfe;
+}
+
+.compact-room-open:active {
+  transform: translateY(1px);
+}
+
+.compact-room-waiting {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: none;
+  opacity: 0.58;
+  cursor: default;
+}
+
+.compact-room-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.compact-category-tag,
+.compact-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  cursor: default;
+  user-select: none;
+}
+
+.compact-category-tag {
+  background: #edf1f7;
+  color: #637086;
+}
+
+.compact-status {
+  background: #e6eaf1;
+  color: #687386;
+}
+
+.compact-status-open {
+  background: #e7eefc;
+  color: #315fbd;
+}
+
+.compact-room-name {
+  display: block;
+  margin: 9px 0 0;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 720;
+  letter-spacing: 0;
+}
+
+.compact-room-description {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.beatles-placeholder-copy {
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
 .community-content {
   padding: 24px 0 16px;
 }
