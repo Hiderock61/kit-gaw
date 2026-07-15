@@ -37,6 +37,8 @@ applyExplorationState(explorationState);
 const homeScreen = document.querySelector("#screen-home");
 const exploreScreen = document.querySelector("#screen-explore");
 const beatlesScreen = document.querySelector("#screen-beatles");
+const yakouScreen = document.querySelector("#screen-yakou");
+const sentouScreen = document.querySelector("#screen-sentou");
 const communityScreen = document.querySelector("#screen-community");
 const questionScreen = document.querySelector("#screen-question");
 const profileScreen = document.querySelector("#screen-profile");
@@ -45,6 +47,8 @@ const backButton = document.querySelector("#back-button");
 const selfProfileButton = document.querySelector("#self-profile-button");
 const beatlesButton = document.querySelector("#beatles-button");
 const beatlesBackButton = document.querySelector("#beatles-back-button");
+const yakouBackButton = document.querySelector("#yakou-back-button");
+const sentouBackButton = document.querySelector("#sentou-back-button");
 const communityButton = document.querySelector("#community-button");
 const exploreBackButton = document.querySelector("#explore-back-button");
 const questionButton = document.querySelector("#question-button");
@@ -61,19 +65,19 @@ const questionProfileButton = document.querySelector(
 const placeViewpointButton = document.querySelector("#place-viewpoint-button");
 const viewpointModel = document.querySelector("#viewpoint-model");
 const closeViewpointModel = document.querySelector("#close-viewpoint-model");
-const otherViewButton = document.querySelector("#other-view-button");
-const otherViewModel = document.querySelector("#other-view-model");
-const closeOtherViewModel = document.querySelector("#close-other-view-model");
 const signalButton = document.querySelector("#signal-button");
 const signalModel = document.querySelector("#signal-model");
 const closeSignalModel = document.querySelector("#close-signal-model");
+const profileOtherRoomCards = document.querySelectorAll(
+  ".profile-other-room-card",
+);
+const boardLaterYakouLink = document.querySelector("#board-later-yakou-link");
+const yakouKeepButton = document.querySelector("#yakou-keep-button");
+const sentouKeepButton = document.querySelector("#sentou-keep-button");
 
 function setProfileModel(activeModel) {
-  const showOtherView = activeModel === "other-view";
   const showSignal = activeModel === "signal";
 
-  otherViewModel.hidden = !showOtherView;
-  otherViewModel.setAttribute("aria-hidden", String(!showOtherView));
   signalModel.hidden = !showSignal;
   signalModel.setAttribute("aria-hidden", String(!showSignal));
 }
@@ -82,6 +86,8 @@ function showScreen(screen) {
   const showHome = screen === "home";
   const showExplore = screen === "explore";
   const showBeatles = screen === "beatles";
+  const showYakou = screen === "yakou";
+  const showSentou = screen === "sentou";
   const showCommunity = screen === "community";
   const showQuestion = screen === "question";
   const showProfile = screen === "profile";
@@ -92,6 +98,10 @@ function showScreen(screen) {
   exploreScreen.setAttribute("aria-hidden", String(!showExplore));
   beatlesScreen.hidden = !showBeatles;
   beatlesScreen.setAttribute("aria-hidden", String(!showBeatles));
+  yakouScreen.hidden = !showYakou;
+  yakouScreen.setAttribute("aria-hidden", String(!showYakou));
+  sentouScreen.hidden = !showSentou;
+  sentouScreen.setAttribute("aria-hidden", String(!showSentou));
   communityScreen.hidden = !showCommunity;
   communityScreen.setAttribute("aria-hidden", String(!showCommunity));
   questionScreen.hidden = !showQuestion;
@@ -115,6 +125,8 @@ backButton.addEventListener("click", () => showScreen("home"));
 selfProfileButton.addEventListener("click", () => showScreen("profile"));
 beatlesButton.addEventListener("click", () => showScreen("beatles"));
 beatlesBackButton.addEventListener("click", () => showScreen("explore"));
+yakouBackButton.addEventListener("click", () => showScreen("explore"));
+sentouBackButton.addEventListener("click", () => showScreen("explore"));
 communityButton.addEventListener("click", () => showScreen("community"));
 exploreBackButton.addEventListener("click", () => showScreen("explore"));
 questionButton.addEventListener("click", () => showScreen("question"));
@@ -137,14 +149,6 @@ closeViewpointModel.addEventListener("click", () => {
   viewpointModel.setAttribute("aria-hidden", "true");
 });
 
-otherViewButton.addEventListener("click", () => {
-  setProfileModel("other-view");
-});
-
-closeOtherViewModel.addEventListener("click", () => {
-  setProfileModel(null);
-});
-
 signalButton.addEventListener("click", () => {
   setProfileModel("signal");
 });
@@ -152,3 +156,35 @@ signalButton.addEventListener("click", () => {
 closeSignalModel.addEventListener("click", () => {
   setProfileModel(null);
 });
+
+profileOtherRoomCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    showScreen(card.dataset.room);
+  });
+});
+
+boardLaterYakouLink.addEventListener("click", () => showScreen("yakou"));
+
+function initRoomKeepButton(button) {
+  if (!button) {
+    return;
+  }
+
+  button.addEventListener("click", () => {
+    if (button.dataset.state !== "idle") {
+      return;
+    }
+
+    button.dataset.state = "just-saved";
+    button.textContent = "探索盤に置きました";
+
+    window.setTimeout(() => {
+      button.dataset.state = "saved";
+      button.textContent = "探索盤に置いてあります";
+      button.disabled = true;
+    }, 1200);
+  });
+}
+
+initRoomKeepButton(yakouKeepButton);
+initRoomKeepButton(sentouKeepButton);
