@@ -1341,6 +1341,24 @@ h2 {
   opacity: 0.85;
 }
 
+.board-visit-link {
+  display: block;
+  margin-top: 10px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.board-visit-link[hidden] {
+  display: none;
+}
+
 /* 探索盤の「あとで辿る」内、部屋への直接リンク */
 
 .board-later-link {

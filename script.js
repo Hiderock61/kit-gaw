@@ -74,6 +74,8 @@ const profileOtherRoomCards = document.querySelectorAll(
 const boardLaterYakouLink = document.querySelector("#board-later-yakou-link");
 const yakouKeepButton = document.querySelector("#yakou-keep-button");
 const sentouKeepButton = document.querySelector("#sentou-keep-button");
+const yakouBoardLink = document.querySelector("#yakou-board-link");
+const sentouBoardLink = document.querySelector("#sentou-board-link");
 
 function setProfileModel(activeModel) {
   const showSignal = activeModel === "signal";
@@ -165,7 +167,7 @@ profileOtherRoomCards.forEach((card) => {
 
 boardLaterYakouLink.addEventListener("click", () => showScreen("yakou"));
 
-function initRoomKeepButton(button) {
+function initRoomKeepButton(button, boardLink) {
   if (!button) {
     return;
   }
@@ -182,9 +184,17 @@ function initRoomKeepButton(button) {
       button.dataset.state = "saved";
       button.textContent = "探索盤に置いてあります";
       button.disabled = true;
+
+      if (boardLink) {
+        boardLink.hidden = false;
+      }
     }, 1200);
   });
+
+  if (boardLink) {
+    boardLink.addEventListener("click", () => showScreen("home"));
+  }
 }
 
-initRoomKeepButton(yakouKeepButton);
-initRoomKeepButton(sentouKeepButton);
+initRoomKeepButton(yakouKeepButton, yakouBoardLink);
+initRoomKeepButton(sentouKeepButton, sentouBoardLink);
