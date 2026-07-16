@@ -52,16 +52,23 @@
             <section class="board-primary-section">
               <h3 class="section-label">この前の続き</h3>
 
-              <article class="room-card room-card-open">
-                <h4>無表情ケン</h4>
-                <p>「ハードロックの矛盾」から見つけました</p>
-                <button
-                  id="board-resume-button"
-                  class="room-button"
-                  type="button"
-                >
-                  続きを見る
-                </button>
+              <article
+                id="resume-card"
+                class="resume-card"
+                data-type="profile"
+                tabindex="0"
+                role="button"
+                aria-label="この前の続きへ戻る"
+              >
+                <p class="resume-type">プロフィール</p>
+
+                <h3 class="resume-title">無表情ケン・ザ・ミッドナイト</h3>
+
+                <p class="resume-context">
+                  「ハードロックにおける努力と無関心の矛盾を観測する部屋」で見つけました
+                </p>
+
+                <span class="resume-action">ここへ戻る →</span>
               </article>
             </section>
 

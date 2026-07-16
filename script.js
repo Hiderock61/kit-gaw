@@ -15,7 +15,6 @@ const boardNextPathSection = document.querySelector(
 const boardStarterOpenButton = document.querySelector(
   "#board-starter-open-button",
 );
-const boardResumeButton = document.querySelector("#board-resume-button");
 
 function applyExplorationState(state) {
   const isFirstTime = state === "first-time";
@@ -33,6 +32,64 @@ function applyExplorationState(state) {
 }
 
 applyExplorationState(explorationState);
+
+// ---- 「この前の続き」resume-cardの検証用データ切替 ----
+// 耐久検証用のダミーフラグです。値を書き換えて3パターンを確認できます。
+//   "room"    : 長い部屋名パターン
+//   "topic"   : 長い話題名パターン
+//   "profile" : 長いプロフィール名＋長い文脈パターン（既定）
+const resumeVariant = "profile";
+
+const resumeVariants = {
+  room: {
+    type: "部屋",
+    title: "🌙 夜型生活と眠れない時間について静かに観測する部屋",
+    context: "この部屋を見ていました",
+  },
+  topic: {
+    type: "話題",
+    title:
+      "なぜハードロックでは努力して身につけた技術を、努力していないように見せることが評価されるのか。",
+    context: "「ハードロックの矛盾」で読んでいました",
+  },
+  profile: {
+    type: "プロフィール",
+    title: "無表情ケン・ザ・ミッドナイト",
+    context:
+      "「ハードロックにおける努力と無関心の矛盾を観測する部屋」で見つけました",
+  },
+};
+
+const resumeCard = document.querySelector("#resume-card");
+const resumeTypeEl = resumeCard.querySelector(".resume-type");
+const resumeTitleEl = resumeCard.querySelector(".resume-title");
+const resumeContextEl = resumeCard.querySelector(".resume-context");
+
+function applyResumeVariant(variant) {
+  const data = resumeVariants[variant];
+  if (!data) {
+    return;
+  }
+
+  resumeCard.dataset.type = variant;
+  resumeTypeEl.textContent = data.type;
+  resumeTitleEl.textContent = data.title;
+  resumeContextEl.textContent = data.context;
+}
+
+applyResumeVariant(resumeVariant);
+
+function activateResumeCard() {
+  showScreen("community");
+}
+
+resumeCard.addEventListener("click", activateResumeCard);
+resumeCard.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    activateResumeCard();
+  }
+});
 
 const homeScreen = document.querySelector("#screen-home");
 const exploreScreen = document.querySelector("#screen-explore");
@@ -122,7 +179,6 @@ exploreButton.addEventListener("click", () => showScreen("explore"));
 boardStarterOpenButton.addEventListener("click", () =>
   showScreen("community"),
 );
-boardResumeButton.addEventListener("click", () => showScreen("community"));
 backButton.addEventListener("click", () => showScreen("home"));
 selfProfileButton.addEventListener("click", () => showScreen("profile"));
 beatlesButton.addEventListener("click", () => showScreen("beatles"));
