@@ -96,6 +96,7 @@ const exploreScreen = document.querySelector("#screen-explore");
 const beatlesScreen = document.querySelector("#screen-beatles");
 const yakouScreen = document.querySelector("#screen-yakou");
 const sentouScreen = document.querySelector("#screen-sentou");
+const footprintsScreen = document.querySelector("#screen-footprints");
 const communityScreen = document.querySelector("#screen-community");
 const questionScreen = document.querySelector("#screen-question");
 const profileScreen = document.querySelector("#screen-profile");
@@ -133,6 +134,16 @@ const yakouKeepButton = document.querySelector("#yakou-keep-button");
 const sentouKeepButton = document.querySelector("#sentou-keep-button");
 const yakouBoardLink = document.querySelector("#yakou-board-link");
 const sentouBoardLink = document.querySelector("#sentou-board-link");
+const footprintsEntryButton = document.querySelector(
+  "#footprints-entry-button",
+);
+const footprintsBackButton = document.querySelector(
+  "#footprints-back-button",
+);
+const footprintKennRow = document.querySelector("#footprint-kenn-row");
+const profileSourceContext = document.querySelector(
+  "#profile-source-context",
+);
 
 function setProfileModel(activeModel) {
   const showSignal = activeModel === "signal";
@@ -141,12 +152,13 @@ function setProfileModel(activeModel) {
   signalModel.setAttribute("aria-hidden", String(!showSignal));
 }
 
-function showScreen(screen) {
+function showScreen(screen, options = {}) {
   const showHome = screen === "home";
   const showExplore = screen === "explore";
   const showBeatles = screen === "beatles";
   const showYakou = screen === "yakou";
   const showSentou = screen === "sentou";
+  const showFootprints = screen === "footprints";
   const showCommunity = screen === "community";
   const showQuestion = screen === "question";
   const showProfile = screen === "profile";
@@ -161,12 +173,20 @@ function showScreen(screen) {
   yakouScreen.setAttribute("aria-hidden", String(!showYakou));
   sentouScreen.hidden = !showSentou;
   sentouScreen.setAttribute("aria-hidden", String(!showSentou));
+  footprintsScreen.hidden = !showFootprints;
+  footprintsScreen.setAttribute("aria-hidden", String(!showFootprints));
   communityScreen.hidden = !showCommunity;
   communityScreen.setAttribute("aria-hidden", String(!showCommunity));
   questionScreen.hidden = !showQuestion;
   questionScreen.setAttribute("aria-hidden", String(!showQuestion));
   profileScreen.hidden = !showProfile;
   profileScreen.setAttribute("aria-hidden", String(!showProfile));
+
+  if (showProfile) {
+    const fromFootprint = Boolean(options.fromFootprint);
+    profileSourceContext.hidden = !fromFootprint;
+    profileSourceContext.setAttribute("aria-hidden", String(!fromFootprint));
+  }
 
   if (!showProfile) {
     setProfileModel(null);
@@ -185,6 +205,13 @@ beatlesButton.addEventListener("click", () => showScreen("beatles"));
 beatlesBackButton.addEventListener("click", () => showScreen("explore"));
 yakouBackButton.addEventListener("click", () => showScreen("explore"));
 sentouBackButton.addEventListener("click", () => showScreen("explore"));
+footprintsEntryButton.addEventListener("click", () =>
+  showScreen("footprints"),
+);
+footprintsBackButton.addEventListener("click", () => showScreen("home"));
+footprintKennRow.addEventListener("click", () => {
+  showScreen("profile", { fromFootprint: true });
+});
 communityButton.addEventListener("click", () => showScreen("community"));
 exploreBackButton.addEventListener("click", () => showScreen("explore"));
 questionButton.addEventListener("click", () => showScreen("question"));

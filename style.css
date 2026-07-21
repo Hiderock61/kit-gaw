@@ -1449,3 +1449,164 @@ h2 {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
 }
+
+/* 探索盤 → 足あと(補助導線) */
+
+.board-footprints-link {
+  display: block;
+  width: fit-content;
+  margin: 32px auto 0;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 620;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-color: #b4bece;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.board-footprints-link:hover {
+  color: var(--text);
+}
+
+.board-footprints-link:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}
+
+/* 足あと一覧（screen-footprints） */
+
+.footprints-content {
+  width: min(100%, 460px);
+  min-height: calc(100svh - 60px);
+  margin: 0 auto;
+  padding: 24px 0 16px;
+}
+
+.footprints-list {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.footprint-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.footprint-row:hover {
+  border-color: #b8c4d6;
+}
+
+.footprint-row:active {
+  transform: translateY(1px);
+}
+
+.footprint-row:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}
+
+.footprint-avatar {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #e9eef7;
+}
+
+.footprint-text {
+  display: block;
+  min-width: 0;
+}
+
+.footprint-name {
+  display: block;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.footprint-context {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 足あと経由プロフィールの文脈帯 */
+
+.profile-source-context {
+  margin: 0 0 20px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(40, 103, 240, 0.08);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 640;
+  line-height: 1.5;
+}
+
+/* プロフィール内：共通する部屋の補助文 */
+
+.profile-shared-room-note {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* 合図UI（テキストリンク型） */
+
+.profile-signal-link {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  min-height: 44px;
+  margin-top: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 640;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.profile-signal-link:hover {
+  color: var(--accent-hover);
+}
+
+.profile-signal-link:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}

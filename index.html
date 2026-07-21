@@ -109,6 +109,14 @@
           </div>
 
           <button
+            id="footprints-entry-button"
+            class="board-footprints-link"
+            type="button"
+          >
+            足あと
+          </button>
+
+          <button
             id="explore-button"
             class="secondary-button board-other-places-button"
             type="button"
@@ -292,6 +300,32 @@
 
           <button id="sentou-back-button" class="secondary-button" type="button">
             部屋を探すへ戻る
+          </button>
+        </div>
+      </section>
+
+      <section id="screen-footprints" class="screen" hidden aria-hidden="true">
+        <div class="footprints-content">
+          <h2>足あと</h2>
+
+          <ul class="footprints-list">
+            <li>
+              <button id="footprint-kenn-row" class="footprint-row" type="button">
+                <span class="footprint-avatar" aria-hidden="true"></span>
+
+                <span class="footprint-text">
+                  <span class="footprint-name">無表情ケン</span>
+                  <span class="footprint-context">
+                    「ハードロックの矛盾」から<br />
+                    あなたのプロフィールを見ました
+                  </span>
+                </span>
+              </button>
+            </li>
+          </ul>
+
+          <button id="footprints-back-button" class="secondary-button" type="button">
+            探索盤へ戻る
           </button>
         </div>
       </section>
@@ -507,6 +541,15 @@
 
       <section id="screen-profile" class="screen" hidden aria-hidden="true">
         <div class="profile-content">
+          <p
+            id="profile-source-context"
+            class="profile-source-context"
+            hidden
+            aria-hidden="true"
+          >
+            「ハードロックの矛盾」から来た人
+          </p>
+
           <header class="profile-header">
             <div class="avatar-placeholder" role="img" aria-label="無表情ケンの仮アバター">
               <span class="avatar-head" aria-hidden="true"></span>
@@ -526,7 +569,10 @@
             <div class="room-identity-block">
               <h4>よくいる部屋</h4>
               <ul>
-                <li>ハードロックの矛盾</li>
+                <li>
+                  🎸 ハードロックの矛盾
+                  <span class="profile-shared-room-note">あなたもいる部屋</span>
+                </li>
                 <li>努力を隠す美学</li>
                 <li>ステージ衣装と身体</li>
               </ul>
@@ -589,8 +635,8 @@
           </section>
 
           <div class="profile-actions">
-            <button id="signal-button" class="profile-action-button profile-action-primary" type="button">
-              合図を置く
+            <button id="signal-button" class="profile-signal-link" type="button">
+              そっと合図を置く
             </button>
 
             <div id="signal-model" class="profile-inline-model" hidden aria-hidden="true">
