@@ -89,6 +89,36 @@ const footprintState = {
   ],
 };
 
+// ---- 相手プロフィール固定ダミーデータ ----
+const currentUser = {
+  id: "user-me",
+  name: "あなた",
+  communityIds: ["hard-rock", "night-life"],
+};
+
+const profileData = {
+  id: "ken",
+  name: "無表情ケン",
+  introduction: "言葉の裏にある佇まいを観察しています。",
+  activity: {
+    communityId: "hard-rock",
+    communityName: "ハードロックの矛盾",
+    excerpt: "上手さを正面から見せると、練習の成果発表になってしまう。",
+    questionId: "hard-rock-question",
+  },
+  commonCommunities: [
+    { id: "hard-rock", name: "ハードロックの矛盾", screen: "community" },
+    { id: "night-life", name: "夜型生活の観測室", screen: "yakou" },
+  ],
+  otherCommunity: {
+    id: "sentou",
+    name: "銭湯帰りの会",
+    screen: "sentou",
+    excerpt: "湯上がりだけは少し素直になる",
+  },
+};
+
+
 const homeScreen = document.querySelector("#screen-home");
 const exploreScreen = document.querySelector("#screen-explore");
 const beatlesScreen = document.querySelector("#screen-beatles");
@@ -125,14 +155,21 @@ const communityBackFromProfile = document.querySelector(
 const questionProfileButton = document.querySelector(
   "#question-profile-button",
 );
-const placeViewpointButton = document.querySelector("#place-viewpoint-button");
-const viewpointModel = document.querySelector("#viewpoint-model");
-const closeViewpointModel = document.querySelector("#close-viewpoint-model");
-const signalButton = document.querySelector("#signal-button");
-const signalModel = document.querySelector("#signal-model");
-const closeSignalModel = document.querySelector("#close-signal-model");
-const profileOtherRoomCards = document.querySelectorAll(
-  ".profile-other-room-card",
+const profileName = document.querySelector("#profile-name");
+const profileIntroduction = document.querySelector("#profile-introduction");
+const profileActivitySource = document.querySelector("#profile-activity-source");
+const profileActivityExcerpt = document.querySelector("#profile-activity-excerpt");
+const profileOriginalTopicButton = document.querySelector(
+  "#profile-original-topic-button",
+);
+const profileCommonHardRockButton = document.querySelector(
+  "#profile-common-hard-rock-button",
+);
+const profileCommonNightButton = document.querySelector(
+  "#profile-common-night-button",
+);
+const profileOtherSentouButton = document.querySelector(
+  "#profile-other-sentou-button",
 );
 const boardLaterYakouLink = document.querySelector("#board-later-yakou-link");
 const boardLaterSentouLink = document.querySelector(
@@ -140,9 +177,6 @@ const boardLaterSentouLink = document.querySelector(
 );
 const boardNextPathYakouLink = document.querySelector(
   "#board-next-path-yakou-link",
-);
-const profileSharedRoomLink = document.querySelector(
-  "#profile-shared-room-link",
 );
 const yakouKeepButton = document.querySelector("#yakou-keep-button");
 const sentouKeepButton = document.querySelector("#sentou-keep-button");
@@ -199,12 +233,14 @@ function updateReturnLabel(button, labelMap, target) {
 
 let profileFromFootprint = false;
 
-function setProfileModel(activeModel) {
-  const showSignal = activeModel === "signal";
-
-  signalModel.hidden = !showSignal;
-  signalModel.setAttribute("aria-hidden", String(!showSignal));
+function renderProfile(data) {
+  profileName.textContent = data.name;
+  profileIntroduction.textContent = data.introduction;
+  profileActivitySource.textContent = `「${data.activity.communityName}」での発言`;
+  profileActivityExcerpt.textContent = data.activity.excerpt;
 }
+
+renderProfile(profileData);
 
 function showScreen(screen, options = {}) {
   const showHome = screen === "home";
@@ -283,9 +319,6 @@ function showScreen(screen, options = {}) {
     );
   }
 
-  if (!showProfile) {
-    setProfileModel(null);
-  }
 
   window.scrollTo(0, 0);
 }
@@ -336,33 +369,18 @@ communityBackFromQuestion.addEventListener("click", () =>
 communityBackFromProfile.addEventListener("click", () =>
   showScreen(returnTargets.profile),
 );
-profileSharedRoomLink.addEventListener("click", () =>
+profileOriginalTopicButton.addEventListener("click", () =>
+  showScreen("question", { returnTo: "profile" }),
+);
+profileCommonHardRockButton.addEventListener("click", () =>
   showScreen("community", { returnTo: "profile" }),
 );
-
-placeViewpointButton.addEventListener("click", () => {
-  viewpointModel.hidden = false;
-  viewpointModel.setAttribute("aria-hidden", "false");
-});
-
-closeViewpointModel.addEventListener("click", () => {
-  viewpointModel.hidden = true;
-  viewpointModel.setAttribute("aria-hidden", "true");
-});
-
-signalButton.addEventListener("click", () => {
-  setProfileModel("signal");
-});
-
-closeSignalModel.addEventListener("click", () => {
-  setProfileModel(null);
-});
-
-profileOtherRoomCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    showScreen(card.dataset.room, { returnTo: "profile" });
-  });
-});
+profileCommonNightButton.addEventListener("click", () =>
+  showScreen("yakou", { returnTo: "profile" }),
+);
+profileOtherSentouButton.addEventListener("click", () =>
+  showScreen("sentou", { returnTo: "profile" }),
+);
 
 boardLaterYakouLink.addEventListener("click", () =>
   showScreen("yakou", { returnTo: "home" }),

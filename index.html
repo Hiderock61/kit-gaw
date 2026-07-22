@@ -599,115 +599,96 @@
             hidden
             aria-hidden="true"
           >
-            「ハードロックの矛盾」から来た人
+            「ハードロックの矛盾」からプロフィールを見に来た人
           </p>
 
-          <header class="profile-header">
+          <header class="profile-header profile-header-compact">
             <div class="avatar-placeholder" role="img" aria-label="無表情ケンの仮アバター">
               <span class="avatar-head" aria-hidden="true"></span>
               <span class="avatar-body" aria-hidden="true"></span>
             </div>
 
-            <h2>無表情ケン</h2>
-            <p class="profile-introduction">
-              派手な音楽ほど、<br />
-              演奏者の顔が動かない理由を掘っています。
+            <h2 id="profile-name">無表情ケン</h2>
+            <p id="profile-introduction" class="profile-introduction">
+              言葉の裏にある佇まいを観察しています。
             </p>
           </header>
 
-          <section class="profile-section room-card-section" aria-labelledby="room-card-title">
-            <h3 id="room-card-title">部屋名刺©️</h3>
+          <section
+            class="profile-section profile-activity-section"
+            aria-labelledby="profile-activity-title"
+          >
+            <h3 id="profile-activity-title">
+              この人がコミュニティで話していたこと
+            </h3>
 
-            <div class="room-identity-block">
-              <h4>よくいる部屋</h4>
-              <ul>
-                <li>
-                  <button
-                    id="profile-shared-room-link"
-                    class="profile-shared-room-link"
-                    type="button"
-                  >
-                    🎸 ハードロックの矛盾
-                    <span class="profile-shared-room-note">あなたもいる部屋</span>
-                  </button>
-                </li>
-                <li>努力を隠す美学</li>
-                <li>ステージ衣装と身体</li>
-              </ul>
-            </div>
-
-            <div class="room-identity-block">
-              <h4>よく戻る問い</h4>
-              <p>
-                無表情は、<br />
-                余裕なのか演技なのか。
+            <article class="profile-activity-card">
+              <p id="profile-activity-source" class="profile-activity-source">
+                「ハードロックの矛盾」での発言
               </p>
-            </div>
+              <p id="profile-activity-excerpt" class="profile-activity-excerpt">
+                上手さを正面から見せると、<br />
+                練習の成果発表になってしまう。
+              </p>
+              <button
+                id="profile-original-topic-button"
+                class="profile-text-link"
+                type="button"
+              >
+                元の話題を見る →
+              </button>
+            </article>
           </section>
-
-          <section class="profile-section distance-section" aria-labelledby="distance-title">
-            <h3 id="distance-title">距離感</h3>
-            <p>
-              足あとだけ残して、<br />
-              今日は帰るくらいでも大丈夫です。
-            </p>
-          </section>
-
-          <aside class="profile-experience-example" aria-label="交差の体験例">
-            <p class="profile-experience-label">体験例</p>
-            <p>
-              この人とは、<br />
-              同じ問いの近くで何度か交差しています。
-            </p>
-          </aside>
 
           <section
-            class="profile-section profile-other-rooms"
-            aria-labelledby="other-rooms-title"
+            class="profile-section profile-community-section"
+            aria-labelledby="profile-common-title"
           >
-            <h3 id="other-rooms-title">この人がいる別の部屋</h3>
+            <h3 id="profile-common-title">
+              あなたと共通するコミュニティ 2つ
+            </h3>
 
-            <div class="profile-other-rooms-list">
+            <div class="profile-community-list">
               <button
-                class="profile-other-room-card"
+                id="profile-common-hard-rock-button"
+                class="profile-community-row"
                 type="button"
-                data-room="yakou"
               >
-                <span class="profile-other-room-name">🌙 夜型生活の観測室</span>
-                <span class="profile-other-room-line">
-                  「夜になると、やっと一日が始まる感じがする」
-                </span>
+                <span>🎸 ハードロックの矛盾</span>
+                <span class="profile-row-arrow" aria-hidden="true">→</span>
               </button>
 
               <button
-                class="profile-other-room-card"
+                id="profile-common-night-button"
+                class="profile-community-row"
                 type="button"
-                data-room="sentou"
               >
-                <span class="profile-other-room-name">♨️ 銭湯帰りの会</span>
-                <span class="profile-other-room-line">
-                  「湯上がりの牛乳は、冷たければ冷たいほどいい」
-                </span>
+                <span>🌙 夜型生活の観測室</span>
+                <span class="profile-row-arrow" aria-hidden="true">→</span>
               </button>
             </div>
           </section>
 
-          <div class="profile-actions">
-            <button id="signal-button" class="profile-signal-link" type="button">
-              そっと合図を置く
-            </button>
+          <section
+            class="profile-section profile-other-community-section"
+            aria-labelledby="profile-other-community-title"
+          >
+            <h3 id="profile-other-community-title">
+              この人がいる別のコミュニティ
+            </h3>
 
-            <div id="signal-model" class="profile-inline-model" hidden aria-hidden="true">
-              <p>
-                この模型では、<br />
-                少し近づきたい意思を<br />
-                ここに置ける想定です。
-              </p>
-              <button id="close-signal-model" class="profile-model-close" type="button">
-                閉じる
-              </button>
-            </div>
-          </div>
+            <button
+              id="profile-other-sentou-button"
+              class="profile-other-community-card"
+              type="button"
+            >
+              <span class="profile-other-community-name">♨️ 銭湯帰りの会</span>
+              <span class="profile-other-community-excerpt">
+                「湯上がりだけは少し素直になる」
+              </span>
+              <span class="profile-other-community-action">この場所を見る →</span>
+            </button>
+          </section>
 
           <button id="community-back-from-profile" class="secondary-button profile-back-button" type="button">
             問いへ戻る
