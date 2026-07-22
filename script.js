@@ -33,31 +33,11 @@ function applyExplorationState(state) {
 
 applyExplorationState(explorationState);
 
-// ---- 「この前の続き」resume-cardの検証用データ切替 ----
-// 耐久検証用のダミーフラグです。値を書き換えて3パターンを確認できます。
-//   "room"    : 長い部屋名パターン
-//   "topic"   : 長い話題名パターン
-//   "profile" : 長いプロフィール名＋長い文脈パターン（既定）
-const resumeVariant = "profile";
-
-const resumeVariants = {
-  room: {
-    type: "部屋",
-    title: "🌙 夜型生活と眠れない時間について静かに観測する部屋",
-    context: "この部屋を見ていました",
-  },
-  topic: {
-    type: "話題",
-    title:
-      "なぜハードロックでは努力して身につけた技術を、努力していないように見せることが評価されるのか。",
-    context: "「ハードロックの矛盾」で読んでいました",
-  },
-  profile: {
-    type: "プロフィール",
-    title: "無表情ケン・ザ・ミッドナイト",
-    context:
-      "「ハードロックにおける努力と無関心の矛盾を観測する部屋」で見つけました",
-  },
+// ---- 「この前の続き」固定ダミーデータ ----
+const resumeState = {
+  type: "話題",
+  title: "なぜハードロックは、努力していない顔をするのか。",
+  context: "「ハードロックの矛盾」で読んでいました",
 };
 
 const resumeCard = document.querySelector("#resume-card");
@@ -65,22 +45,13 @@ const resumeTypeEl = resumeCard.querySelector(".resume-type");
 const resumeTitleEl = resumeCard.querySelector(".resume-title");
 const resumeContextEl = resumeCard.querySelector(".resume-context");
 
-function applyResumeVariant(variant) {
-  const data = resumeVariants[variant];
-  if (!data) {
-    return;
-  }
-
-  resumeCard.dataset.type = variant;
-  resumeTypeEl.textContent = data.type;
-  resumeTitleEl.textContent = data.title;
-  resumeContextEl.textContent = data.context;
-}
-
-applyResumeVariant(resumeVariant);
+resumeCard.dataset.type = "topic";
+resumeTypeEl.textContent = resumeState.type;
+resumeTitleEl.textContent = resumeState.title;
+resumeContextEl.textContent = resumeState.context;
 
 function activateResumeCard() {
-  showScreen("profile", { returnTo: "home", fromFootprint: false });
+  showScreen("question", { returnTo: "home" });
 }
 
 resumeCard.addEventListener("click", activateResumeCard);
@@ -90,6 +61,33 @@ resumeCard.addEventListener("keydown", (event) => {
     activateResumeCard();
   }
 });
+
+// ---- 足あと固定ダミーデータ ----
+const footprintState = {
+  totalCount: 3,
+  items: [
+    {
+      footprintId: "footprint-001",
+      visitor: { id: "ken", name: "無表情ケン" },
+      sharedCommunityIds: [
+        "hard-rock",
+        "night-life",
+        "guitar-style",
+        "late-night-radio",
+      ],
+    },
+    {
+      footprintId: "footprint-002",
+      visitor: { id: "night-observer", name: "夜型の観測者" },
+      sharedCommunityIds: ["night-life"],
+    },
+    {
+      footprintId: "footprint-003",
+      visitor: { id: "sentou-person", name: "銭湯帰りの人" },
+      sharedCommunityIds: ["sentou", "night-life"],
+    },
+  ],
+};
 
 const homeScreen = document.querySelector("#screen-home");
 const exploreScreen = document.querySelector("#screen-explore");
@@ -104,6 +102,9 @@ const profileScreen = document.querySelector("#screen-profile");
 const exploreButton = document.querySelector("#explore-button");
 const backButton = document.querySelector("#back-button");
 const selfProfileButton = document.querySelector("#self-profile-button");
+const homeSelfProfileButton = document.querySelector(
+  "#home-self-profile-button",
+);
 const selfProfileBackButton = document.querySelector(
   "#self-profile-back-button",
 );
@@ -147,13 +148,11 @@ const yakouKeepButton = document.querySelector("#yakou-keep-button");
 const sentouKeepButton = document.querySelector("#sentou-keep-button");
 const yakouBoardLink = document.querySelector("#yakou-board-link");
 const sentouBoardLink = document.querySelector("#sentou-board-link");
-const footprintsEntryButton = document.querySelector(
-  "#footprints-entry-button",
-);
+const footprintSummary = document.querySelector("#footprint-summary");
+const footprintsList = document.querySelector("#footprints-list");
 const footprintsBackButton = document.querySelector(
   "#footprints-back-button",
 );
-const footprintKennRow = document.querySelector("#footprint-kenn-row");
 const profileSourceContext = document.querySelector(
   "#profile-source-context",
 );
@@ -163,6 +162,9 @@ const profileSourceContext = document.querySelector(
 // 完全な履歴配列は持たず、直前の入口だけを覚える最小構造。
 const returnTargets = {
   profile: "question",
+  selfProfile: "explore",
+  footprints: "home",
+  question: "community",
   yakou: "explore",
   sentou: "explore",
   community: "explore",
@@ -216,8 +218,12 @@ function showScreen(screen, options = {}) {
   const showQuestion = screen === "question";
   const showProfile = screen === "profile";
 
-  if (options.returnTo && Object.prototype.hasOwnProperty.call(returnTargets, screen)) {
-    returnTargets[screen] = options.returnTo;
+  const returnTargetKey = screen === "self-profile" ? "selfProfile" : screen;
+  if (
+    options.returnTo &&
+    Object.prototype.hasOwnProperty.call(returnTargets, returnTargetKey)
+  ) {
+    returnTargets[returnTargetKey] = options.returnTo;
   }
 
   homeScreen.hidden = !showHome;
@@ -289,8 +295,15 @@ boardStarterOpenButton.addEventListener("click", () =>
   showScreen("community", { returnTo: "home" }),
 );
 backButton.addEventListener("click", () => showScreen("home"));
-selfProfileButton.addEventListener("click", () => showScreen("self-profile"));
-selfProfileBackButton.addEventListener("click", () => showScreen("explore"));
+selfProfileButton.addEventListener("click", () =>
+  showScreen("self-profile", { returnTo: "explore" }),
+);
+homeSelfProfileButton.addEventListener("click", () =>
+  showScreen("self-profile", { returnTo: "home" }),
+);
+selfProfileBackButton.addEventListener("click", () =>
+  showScreen(returnTargets.selfProfile),
+);
 beatlesButton.addEventListener("click", () => showScreen("beatles"));
 beatlesBackButton.addEventListener("click", () => showScreen("explore"));
 yakouBackButton.addEventListener("click", () =>
@@ -299,20 +312,18 @@ yakouBackButton.addEventListener("click", () =>
 sentouBackButton.addEventListener("click", () =>
   showScreen(returnTargets.sentou),
 );
-footprintsEntryButton.addEventListener("click", () =>
-  showScreen("footprints"),
+footprintsBackButton.addEventListener("click", () =>
+  showScreen(returnTargets.footprints),
 );
-footprintsBackButton.addEventListener("click", () => showScreen("home"));
-footprintKennRow.addEventListener("click", () => {
-  showScreen("profile", { returnTo: "footprints", fromFootprint: true });
-});
 communityButton.addEventListener("click", () =>
   showScreen("community", { returnTo: "explore" }),
 );
 exploreBackButton.addEventListener("click", () =>
   showScreen(returnTargets.community),
 );
-questionButton.addEventListener("click", () => showScreen("question"));
+questionButton.addEventListener("click", () =>
+  showScreen("question", { returnTo: "community" }),
+);
 profileButton.addEventListener("click", () =>
   showScreen("profile", { returnTo: "community", fromFootprint: false }),
 );
@@ -320,7 +331,7 @@ questionProfileButton.addEventListener("click", () =>
   showScreen("profile", { returnTo: "question", fromFootprint: false }),
 );
 communityBackFromQuestion.addEventListener("click", () =>
-  showScreen("community"),
+  showScreen(returnTargets.question),
 );
 communityBackFromProfile.addEventListener("click", () =>
   showScreen(returnTargets.profile),
@@ -362,6 +373,112 @@ boardLaterSentouLink.addEventListener("click", () =>
 boardNextPathYakouLink.addEventListener("click", () =>
   showScreen("yakou", { returnTo: "home" }),
 );
+
+function createFootprintAvatar() {
+  const avatar = document.createElement("span");
+  avatar.className = "footprint-avatar";
+  avatar.setAttribute("aria-hidden", "true");
+  return avatar;
+}
+
+function openFootprintVisitor(visitorId, returnTo) {
+  showScreen("profile", {
+    returnTo,
+    fromFootprint: true,
+    visitorId,
+  });
+}
+
+function renderFootprintSummary() {
+  const previewItems = footprintState.items.slice(0, 2);
+  const remainingCount = Math.max(
+    0,
+    footprintState.totalCount - previewItems.length,
+  );
+
+  const countText = document.createElement("p");
+  countText.className = "footprint-summary-count";
+  countText.textContent = `最近${footprintState.totalCount}人がプロフィールを見に来ました`;
+
+  const list = document.createElement("div");
+  list.className = "footprint-summary-list";
+
+  previewItems.forEach((item) => {
+    const button = document.createElement("button");
+    button.className = "footprint-summary-row";
+    button.type = "button";
+    button.dataset.visitorId = item.visitor.id;
+
+    const text = document.createElement("span");
+    text.className = "footprint-summary-text";
+
+    const name = document.createElement("span");
+    name.className = "footprint-summary-name";
+    name.textContent = item.visitor.name;
+
+    const shared = document.createElement("span");
+    shared.className = "footprint-summary-shared";
+    shared.textContent = `共通コミュニティ ${item.sharedCommunityIds.length}つ`;
+
+    text.append(name, shared);
+    button.append(createFootprintAvatar(), text);
+    button.addEventListener("click", () =>
+      openFootprintVisitor(item.visitor.id, "home"),
+    );
+    list.append(button);
+  });
+
+  const remaining = document.createElement("p");
+  remaining.className = "footprint-summary-remaining";
+  remaining.textContent = remainingCount > 0 ? `ほか${remainingCount}人` : "";
+  remaining.hidden = remainingCount === 0;
+
+  const viewAll = document.createElement("button");
+  viewAll.className = "footprint-summary-link";
+  viewAll.type = "button";
+  viewAll.textContent = "足あとを見る →";
+  viewAll.addEventListener("click", () =>
+    showScreen("footprints", { returnTo: "home" }),
+  );
+
+  footprintSummary.replaceChildren(countText, list, remaining, viewAll);
+}
+
+function renderFootprintList() {
+  const fragment = document.createDocumentFragment();
+
+  footprintState.items.forEach((item) => {
+    const listItem = document.createElement("li");
+    const button = document.createElement("button");
+    button.className = "footprint-row";
+    button.type = "button";
+    button.dataset.visitorId = item.visitor.id;
+
+    const text = document.createElement("span");
+    text.className = "footprint-text";
+
+    const name = document.createElement("span");
+    name.className = "footprint-name";
+    name.textContent = item.visitor.name;
+
+    const shared = document.createElement("span");
+    shared.className = "footprint-context";
+    shared.textContent = `共通コミュニティ ${item.sharedCommunityIds.length}つ`;
+
+    text.append(name, shared);
+    button.append(createFootprintAvatar(), text);
+    button.addEventListener("click", () =>
+      openFootprintVisitor(item.visitor.id, "footprints"),
+    );
+    listItem.append(button);
+    fragment.append(listItem);
+  });
+
+  footprintsList.replaceChildren(fragment);
+}
+
+renderFootprintSummary();
+renderFootprintList();
 
 function initRoomKeepButton(button, boardLink) {
   if (!button) {

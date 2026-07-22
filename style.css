@@ -1659,3 +1659,119 @@ h2 {
   outline: 3px solid rgba(40, 103, 240, 0.24);
   outline-offset: 3px;
 }
+
+/* ディグ循環型SNS©️：探索盤の足あと要約と人物導線 */
+.board-footprint-summary-section {
+  margin-top: 38px;
+}
+
+.footprint-summary {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.footprint-summary-count {
+  padding: 18px 18px 15px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 680;
+}
+
+.footprint-summary-list {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.footprint-summary-row {
+  width: 100%;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 18px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.footprint-summary-row + .footprint-summary-row {
+  border-top: 1px solid var(--border);
+}
+
+.footprint-summary-row:hover {
+  background: #fbfcfe;
+}
+
+.footprint-summary-row:focus-visible,
+.footprint-summary-link:focus-visible,
+.board-self-profile-link:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: -3px;
+}
+
+.footprint-summary-text {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.footprint-summary-name {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 720;
+}
+
+.footprint-summary-shared,
+.footprint-summary-remaining {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.footprint-summary-remaining {
+  padding: 13px 18px 0;
+}
+
+.footprint-summary-link {
+  display: block;
+  width: calc(100% - 36px);
+  margin: 8px 18px 16px;
+  padding: 7px 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.board-self-profile-link {
+  display: block;
+  margin: 18px auto 0;
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 620;
+  text-decoration: underline;
+  text-decoration-color: #b4bece;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.footprints-introduction {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}

@@ -55,21 +55,29 @@
               <article
                 id="resume-card"
                 class="resume-card"
-                data-type="profile"
+                data-type="topic"
                 tabindex="0"
                 role="button"
-                aria-label="この前の続きへ戻る"
+                aria-label="前に読んでいた話題へ戻る"
               >
-                <p class="resume-type">プロフィール</p>
+                <p class="resume-type">話題</p>
 
-                <h3 class="resume-title">無表情ケン・ザ・ミッドナイト</h3>
+                <h3 class="resume-title">
+                  なぜハードロックは、<br />
+                  努力していない顔をするのか。
+                </h3>
 
                 <p class="resume-context">
-                  「ハードロックにおける努力と無関心の矛盾を観測する部屋」で見つけました
+                  「ハードロックの矛盾」で読んでいました
                 </p>
 
                 <span class="resume-action">ここへ戻る →</span>
               </article>
+            </section>
+
+            <section class="board-footprint-summary-section" aria-labelledby="footprint-summary-title">
+              <h3 id="footprint-summary-title" class="section-label">足あと</h3>
+              <div id="footprint-summary" class="footprint-summary"></div>
             </section>
 
             <section id="board-later-section" class="board-later-section" hidden>
@@ -119,19 +127,19 @@
           </div>
 
           <button
-            id="footprints-entry-button"
-            class="board-footprints-link"
-            type="button"
-          >
-            足あと
-          </button>
-
-          <button
             id="explore-button"
             class="secondary-button board-other-places-button"
             type="button"
           >
-            ほかの場所を見る
+            コミュニティを探す
+          </button>
+
+          <button
+            id="home-self-profile-button"
+            class="board-self-profile-link"
+            type="button"
+          >
+            自分の部屋名刺を見る
           </button>
         </div>
       </section>
@@ -289,7 +297,7 @@
             class="secondary-button profile-back-button"
             type="button"
           >
-            部屋を探すへ戻る
+            探索盤へ戻る
           </button>
         </div>
       </section>
@@ -362,21 +370,11 @@
         <div class="footprints-content">
           <h2>足あと</h2>
 
-          <ul class="footprints-list">
-            <li>
-              <button id="footprint-kenn-row" class="footprint-row" type="button">
-                <span class="footprint-avatar" aria-hidden="true"></span>
+          <p class="footprints-introduction">
+            あなたのプロフィールを見に来た人です。
+          </p>
 
-                <span class="footprint-text">
-                  <span class="footprint-name">無表情ケン</span>
-                  <span class="footprint-context">
-                    「ハードロックの矛盾」から<br />
-                    あなたのプロフィールを見ました
-                  </span>
-                </span>
-              </button>
-            </li>
-          </ul>
+          <ul id="footprints-list" class="footprints-list"></ul>
 
           <button id="footprints-back-button" class="secondary-button" type="button">
             探索盤へ戻る
