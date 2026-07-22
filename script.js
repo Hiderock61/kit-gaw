@@ -80,7 +80,7 @@ function applyResumeVariant(variant) {
 applyResumeVariant(resumeVariant);
 
 function activateResumeCard() {
-  showScreen("community");
+  showScreen("profile", { returnTo: "home", fromFootprint: false });
 }
 
 resumeCard.addEventListener("click", activateResumeCard);
@@ -94,6 +94,7 @@ resumeCard.addEventListener("keydown", (event) => {
 const homeScreen = document.querySelector("#screen-home");
 const exploreScreen = document.querySelector("#screen-explore");
 const beatlesScreen = document.querySelector("#screen-beatles");
+const selfProfileScreen = document.querySelector("#screen-self-profile");
 const yakouScreen = document.querySelector("#screen-yakou");
 const sentouScreen = document.querySelector("#screen-sentou");
 const footprintsScreen = document.querySelector("#screen-footprints");
@@ -103,6 +104,9 @@ const profileScreen = document.querySelector("#screen-profile");
 const exploreButton = document.querySelector("#explore-button");
 const backButton = document.querySelector("#back-button");
 const selfProfileButton = document.querySelector("#self-profile-button");
+const selfProfileBackButton = document.querySelector(
+  "#self-profile-back-button",
+);
 const beatlesButton = document.querySelector("#beatles-button");
 const beatlesBackButton = document.querySelector("#beatles-back-button");
 const yakouBackButton = document.querySelector("#yakou-back-button");
@@ -130,6 +134,15 @@ const profileOtherRoomCards = document.querySelectorAll(
   ".profile-other-room-card",
 );
 const boardLaterYakouLink = document.querySelector("#board-later-yakou-link");
+const boardLaterSentouLink = document.querySelector(
+  "#board-later-sentou-link",
+);
+const boardNextPathYakouLink = document.querySelector(
+  "#board-next-path-yakou-link",
+);
+const profileSharedRoomLink = document.querySelector(
+  "#profile-shared-room-link",
+);
 const yakouKeepButton = document.querySelector("#yakou-keep-button");
 const sentouKeepButton = document.querySelector("#sentou-keep-button");
 const yakouBoardLink = document.querySelector("#yakou-board-link");
@@ -145,6 +158,45 @@ const profileSourceContext = document.querySelector(
   "#profile-source-context",
 );
 
+// ---- 戻り先の一段管理 ----
+// 前進時に渡された returnTo を、対象画面ごとに1つだけ記録する。
+// 完全な履歴配列は持たず、直前の入口だけを覚える最小構造。
+const returnTargets = {
+  profile: "question",
+  yakou: "explore",
+  sentou: "explore",
+  community: "explore",
+};
+
+const profileReturnLabels = {
+  question: "問いへ戻る",
+  community: "部屋へ戻る",
+  footprints: "足あとへ戻る",
+  home: "探索盤へ戻る",
+};
+
+const communityReturnLabels = {
+  explore: "部屋を探すへ戻る",
+  profile: "プロフィールへ戻る",
+  home: "探索盤へ戻る",
+};
+
+const roomReturnLabels = {
+  profile: "プロフィールへ戻る",
+  home: "探索盤へ戻る",
+  explore: "部屋を探すへ戻る",
+};
+
+function updateReturnLabel(button, labelMap, target) {
+  if (!button) {
+    return;
+  }
+
+  button.textContent = labelMap[target] || "一つ前へ戻る";
+}
+
+let profileFromFootprint = false;
+
 function setProfileModel(activeModel) {
   const showSignal = activeModel === "signal";
 
@@ -156,6 +208,7 @@ function showScreen(screen, options = {}) {
   const showHome = screen === "home";
   const showExplore = screen === "explore";
   const showBeatles = screen === "beatles";
+  const showSelfProfile = screen === "self-profile";
   const showYakou = screen === "yakou";
   const showSentou = screen === "sentou";
   const showFootprints = screen === "footprints";
@@ -163,12 +216,18 @@ function showScreen(screen, options = {}) {
   const showQuestion = screen === "question";
   const showProfile = screen === "profile";
 
+  if (options.returnTo && Object.prototype.hasOwnProperty.call(returnTargets, screen)) {
+    returnTargets[screen] = options.returnTo;
+  }
+
   homeScreen.hidden = !showHome;
   homeScreen.setAttribute("aria-hidden", String(!showHome));
   exploreScreen.hidden = !showExplore;
   exploreScreen.setAttribute("aria-hidden", String(!showExplore));
   beatlesScreen.hidden = !showBeatles;
   beatlesScreen.setAttribute("aria-hidden", String(!showBeatles));
+  selfProfileScreen.hidden = !showSelfProfile;
+  selfProfileScreen.setAttribute("aria-hidden", String(!showSelfProfile));
   yakouScreen.hidden = !showYakou;
   yakouScreen.setAttribute("aria-hidden", String(!showYakou));
   sentouScreen.hidden = !showSentou;
@@ -183,9 +242,39 @@ function showScreen(screen, options = {}) {
   profileScreen.setAttribute("aria-hidden", String(!showProfile));
 
   if (showProfile) {
-    const fromFootprint = Boolean(options.fromFootprint);
-    profileSourceContext.hidden = !fromFootprint;
-    profileSourceContext.setAttribute("aria-hidden", String(!fromFootprint));
+    if (typeof options.fromFootprint === "boolean") {
+      profileFromFootprint = options.fromFootprint;
+    }
+    profileSourceContext.hidden = !profileFromFootprint;
+    profileSourceContext.setAttribute(
+      "aria-hidden",
+      String(!profileFromFootprint),
+    );
+    updateReturnLabel(
+      communityBackFromProfile,
+      profileReturnLabels,
+      returnTargets.profile,
+    );
+  }
+
+  if (showCommunity) {
+    updateReturnLabel(
+      exploreBackButton,
+      communityReturnLabels,
+      returnTargets.community,
+    );
+  }
+
+  if (showYakou) {
+    updateReturnLabel(yakouBackButton, roomReturnLabels, returnTargets.yakou);
+  }
+
+  if (showSentou) {
+    updateReturnLabel(
+      sentouBackButton,
+      roomReturnLabels,
+      returnTargets.sentou,
+    );
   }
 
   if (!showProfile) {
@@ -197,31 +286,47 @@ function showScreen(screen, options = {}) {
 
 exploreButton.addEventListener("click", () => showScreen("explore"));
 boardStarterOpenButton.addEventListener("click", () =>
-  showScreen("community"),
+  showScreen("community", { returnTo: "home" }),
 );
 backButton.addEventListener("click", () => showScreen("home"));
-selfProfileButton.addEventListener("click", () => showScreen("profile"));
+selfProfileButton.addEventListener("click", () => showScreen("self-profile"));
+selfProfileBackButton.addEventListener("click", () => showScreen("explore"));
 beatlesButton.addEventListener("click", () => showScreen("beatles"));
 beatlesBackButton.addEventListener("click", () => showScreen("explore"));
-yakouBackButton.addEventListener("click", () => showScreen("explore"));
-sentouBackButton.addEventListener("click", () => showScreen("explore"));
+yakouBackButton.addEventListener("click", () =>
+  showScreen(returnTargets.yakou),
+);
+sentouBackButton.addEventListener("click", () =>
+  showScreen(returnTargets.sentou),
+);
 footprintsEntryButton.addEventListener("click", () =>
   showScreen("footprints"),
 );
 footprintsBackButton.addEventListener("click", () => showScreen("home"));
 footprintKennRow.addEventListener("click", () => {
-  showScreen("profile", { fromFootprint: true });
+  showScreen("profile", { returnTo: "footprints", fromFootprint: true });
 });
-communityButton.addEventListener("click", () => showScreen("community"));
-exploreBackButton.addEventListener("click", () => showScreen("explore"));
+communityButton.addEventListener("click", () =>
+  showScreen("community", { returnTo: "explore" }),
+);
+exploreBackButton.addEventListener("click", () =>
+  showScreen(returnTargets.community),
+);
 questionButton.addEventListener("click", () => showScreen("question"));
-profileButton.addEventListener("click", () => showScreen("profile"));
-questionProfileButton.addEventListener("click", () => showScreen("profile"));
+profileButton.addEventListener("click", () =>
+  showScreen("profile", { returnTo: "community", fromFootprint: false }),
+);
+questionProfileButton.addEventListener("click", () =>
+  showScreen("profile", { returnTo: "question", fromFootprint: false }),
+);
 communityBackFromQuestion.addEventListener("click", () =>
   showScreen("community"),
 );
 communityBackFromProfile.addEventListener("click", () =>
-  showScreen("question"),
+  showScreen(returnTargets.profile),
+);
+profileSharedRoomLink.addEventListener("click", () =>
+  showScreen("community", { returnTo: "profile" }),
 );
 
 placeViewpointButton.addEventListener("click", () => {
@@ -244,11 +349,19 @@ closeSignalModel.addEventListener("click", () => {
 
 profileOtherRoomCards.forEach((card) => {
   card.addEventListener("click", () => {
-    showScreen(card.dataset.room);
+    showScreen(card.dataset.room, { returnTo: "profile" });
   });
 });
 
-boardLaterYakouLink.addEventListener("click", () => showScreen("yakou"));
+boardLaterYakouLink.addEventListener("click", () =>
+  showScreen("yakou", { returnTo: "home" }),
+);
+boardLaterSentouLink.addEventListener("click", () =>
+  showScreen("sentou", { returnTo: "home" }),
+);
+boardNextPathYakouLink.addEventListener("click", () =>
+  showScreen("yakou", { returnTo: "home" }),
+);
 
 function initRoomKeepButton(button, boardLink) {
   if (!button) {

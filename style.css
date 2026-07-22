@@ -1610,3 +1610,52 @@ h2 {
   outline: 3px solid rgba(40, 103, 240, 0.24);
   outline-offset: 3px;
 }
+
+/* 共通する部屋リンク（相手プロフィール → コミュニティ） */
+
+.profile-shared-room-link {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.profile-shared-room-link:hover {
+  color: var(--accent);
+}
+
+.profile-shared-room-link:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}
+
+/* この先に続く場所（押せる道標） */
+
+.board-signpost-link {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.board-signpost-link:hover .board-signpost-room {
+  color: var(--accent);
+}
+
+.board-signpost-link:focus-visible {
+  outline: 3px solid rgba(40, 103, 240, 0.24);
+  outline-offset: 3px;
+}

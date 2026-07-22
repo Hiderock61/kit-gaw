@@ -86,7 +86,13 @@
                   <span>🌙 夜型生活の観測室</span>
                 </button>
                 <div class="board-later-row"><span>📼 昭和サブカル研究室</span></div>
-                <div class="board-later-row"><span>🎭 努力を隠す美学</span></div>
+                <button
+                  id="board-later-sentou-link"
+                  class="board-later-row board-later-link"
+                  type="button"
+                >
+                  <span>♨️ 銭湯帰りの会</span>
+                </button>
               </div>
             </section>
 
@@ -98,12 +104,16 @@
               <h3 class="section-label">この先に続く場所</h3>
 
               <div class="board-signpost-list">
-                <div class="board-signpost">
+                <button
+                  id="board-next-path-yakou-link"
+                  class="board-signpost board-signpost-link"
+                  type="button"
+                >
                   <p class="board-signpost-context">
                     無表情ケンが歩いている別の場
                   </p>
                   <p class="board-signpost-room">🌙 夜型生活の観測室</p>
-                </div>
+                </button>
               </div>
             </section>
           </div>
@@ -221,7 +231,7 @@
           </section>
 
           <button id="back-button" class="secondary-button explore-back-button" type="button">
-            入口へ戻る
+            探索盤へ戻る
           </button>
         </div>
       </section>
@@ -235,6 +245,50 @@
           </p>
 
           <button id="beatles-back-button" class="secondary-button" type="button">
+            部屋を探すへ戻る
+          </button>
+        </div>
+      </section>
+
+      <section id="screen-self-profile" class="screen" hidden aria-hidden="true">
+        <div class="profile-content">
+          <header class="profile-header">
+            <div class="avatar-placeholder" role="img" aria-label="自分の仮アバター">
+              <span class="avatar-head" aria-hidden="true"></span>
+              <span class="avatar-body" aria-hidden="true"></span>
+            </div>
+
+            <h2>あなた</h2>
+          </header>
+
+          <section
+            class="profile-section room-card-section"
+            aria-labelledby="self-room-card-title"
+          >
+            <h3 id="self-room-card-title">自分の部屋名刺©️</h3>
+
+            <div class="room-identity-block">
+              <h4>よくいる部屋</h4>
+              <ul>
+                <li>ハードロックの矛盾</li>
+                <li>夜型生活の観測室</li>
+              </ul>
+            </div>
+
+            <div class="room-identity-block">
+              <h4>置いた見方</h4>
+              <p>
+                頑張って見えた瞬間に、<br />
+                魔法が解けるのかもしれない。
+              </p>
+            </div>
+          </section>
+
+          <button
+            id="self-profile-back-button"
+            class="secondary-button profile-back-button"
+            type="button"
+          >
             部屋を探すへ戻る
           </button>
         </div>
@@ -570,8 +624,14 @@
               <h4>よくいる部屋</h4>
               <ul>
                 <li>
-                  🎸 ハードロックの矛盾
-                  <span class="profile-shared-room-note">あなたもいる部屋</span>
+                  <button
+                    id="profile-shared-room-link"
+                    class="profile-shared-room-link"
+                    type="button"
+                  >
+                    🎸 ハードロックの矛盾
+                    <span class="profile-shared-room-note">あなたもいる部屋</span>
+                  </button>
                 </li>
                 <li>努力を隠す美学</li>
                 <li>ステージ衣装と身体</li>
